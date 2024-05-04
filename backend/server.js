@@ -24,7 +24,7 @@ app.get("/", (req,res)=>{
     res.send('API Working')
 })
 
-// to run express server //password:5HPsYVs2yNK0ztnQ
+// to run express server 
 app.listen(port, ()=> {
     console.log(`Server started on http://localhost:${port}`)
 })
