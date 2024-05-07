@@ -3,6 +3,8 @@ import express from 'express'
 import cors from "cors" //to give permission to frontend to communicate with backend
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
+import userRouter from './routes/userRoute.js'
+import 'dotenv/config' 
 
 // to initialize app config
 const app = express()
@@ -19,6 +21,7 @@ connectDB();
 app.use('/api/food', foodRouter)
 // to get images on frontend
 app.use('/images', express.static('uploads'))
+app.use('/api/user', userRouter)
 
 app.get("/", (req,res)=>{
     res.send('API Working')
