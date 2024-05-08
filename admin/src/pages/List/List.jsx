@@ -6,7 +6,6 @@ import {toast} from "react-toastify"
 
 const List = ({url}) => {
   
-  
   const [list, setList] = useState ([])
 
   const fetchList = async () =>{

@@ -97,4 +97,35 @@
 display: none;
     }
    
+} 
+.navbar-profile {
+   position: relative; 
+}
+.navbar-profile-dropdown {
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+.navbar-profile:hover .navbar-profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff2ef;
+    padding: 12px 25px;
+    border-radius: 5px;
+    border: 1px solid tomato;
+    outline: 2px solid white;
+    list-style: none;
+}
+.nav-dropdown {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+}
+.nav-dropdown img {
+    width: 20px;
+}
+.nav-dropdown:hover { 
+    color: tomato;
 }

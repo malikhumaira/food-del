@@ -8,7 +8,7 @@ const foodRouter = express.Router();
 
 const storage =multer.diskStorage({
     destination: "uploads",
-    filename:(req,file,cb)=>{     //cb:callback
+       filename: (req,file,cb) => {     //cb:callback
         return cb(null, `${Date.now()}${file.originalname}`)
     }
 })
