@@ -9,16 +9,20 @@ const StoreContextProvider = (props) => {
   const url = "http://localhost:4000";
   const [token, setToken] = useState("")
   const [food_list, setFood_list] = useState([])
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    if(token) {
+      await axios.post(`${url}/api/cart/add`,{itemId}, {headers:{token}})
+    }
   };
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    await axios.post(`${url}/api/cart/del`,{itemId}, {headers:{token}})
   };
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -36,7 +40,10 @@ const StoreContextProvider = (props) => {
     setFood_list(response.data.data)
   }//to run this page whenever this page is loaded
 
-
+const loadCartData = async (token)=> {
+  const response = await axios.post(`${url}/api/cart/get`, {}, {headers:{token}});
+  setCartItems(response.data.cartData)
+}
   // to avoid siging out on reloading of page,
   //  we chk local storage if it has a token then we store it in tokenState
   useEffect(()=>{    
@@ -44,6 +51,9 @@ const StoreContextProvider = (props) => {
       await fetchFoodList();
       if(localStorage.getItem("token")){
         setToken(localStorage.getItem("token"))
+
+        // to update cartState every time when page reloads we will call loadCartData()
+        await loadCartData(localStorage.getItem("token"))
       }
     }
     loadData();
