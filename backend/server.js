@@ -5,6 +5,7 @@ import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
 import 'dotenv/config' 
+import cartRouter from './routes/cartRouter.js'
 
 // to initialize app config
 const app = express()
@@ -22,6 +23,7 @@ app.use('/api/food', foodRouter)
 // to get images on frontend
 app.use('/images', express.static('uploads'))
 app.use('/api/user', userRouter)
+app.use('/api/cart', cartRouter)
 
 app.get("/", (req,res)=>{
     res.send('API Working')
