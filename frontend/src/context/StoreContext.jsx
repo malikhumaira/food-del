@@ -44,7 +44,7 @@ const loadCartData = async (token)=> {
   const response = await axios.post(`${url}/api/cart/get`, {}, {headers:{token}});
   setCartItems(response.data.cartData)
 }
-  // to avoid siging out on reloading of page,
+  // to avoid signing out on reloading of page,
   //  we chk local storage if it has a token then we store it in tokenState
   useEffect(()=>{    
     async function loadData() {
